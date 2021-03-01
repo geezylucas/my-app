@@ -45,18 +45,12 @@ const CreateArea = () => {
 
       setForm({ name: "" });
     } catch (error) {
-      switch (error.response.status) {
-        case 400:
-          setAlertProps({
-            variant: "danger",
-            title: "¡Ups! Algo salió mal",
-            body: error.response.data,
-            show: true,
-          });
-          break;
-        default:
-          break;
-      }
+      setAlertProps({
+        variant: "danger",
+        title: "¡Ups! Algo salió mal",
+        body: error.response.data,
+        show: true,
+      });
     }
   };
 

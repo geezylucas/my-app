@@ -10,7 +10,8 @@
       "request": "launch",
       "name": "Iniciar Edge para localhost",
       "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}"
+      "webRoot": "${workspaceFolder}",
+      "userDataDir": "${workspaceRoot}/.vscode/edge"
     }
   ]
 }

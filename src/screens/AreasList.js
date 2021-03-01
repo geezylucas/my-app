@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { Table, Button, Modal } from "react-bootstrap";
 import AnyAlert from "../components/AnyAlert";
@@ -28,7 +29,12 @@ const AreasList = () => {
       setData(result.data);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      setAlertProps({
+        variant: "danger",
+        title: "¡Ups! Algo salió mal",
+        body: error.response.data,
+        show: true,
+      });
     }
   };
 
@@ -62,18 +68,12 @@ const AreasList = () => {
 
       fetchData();
     } catch (error) {
-      switch (error.response.status) {
-        case 400:
-          setAlertProps({
-            variant: "danger",
-            title: "¡Ups! Algo salió mal",
-            body: error.response.data,
-            show: true,
-          });
-          break;
-        default:
-          break;
-      }
+      setAlertProps({
+        variant: "danger",
+        title: "¡Ups! Algo salió mal",
+        body: error.response.data,
+        show: true,
+      });
     }
   };
 
@@ -97,7 +97,13 @@ const AreasList = () => {
                 <tr key={i}>
                   <td>{e.name}</td>
                   <td>
-                    <Button variant="success">Editar</Button>{" "}
+                    <Button
+                      variant="success"
+                      as={Link}
+                      to={`/editarea/${e.id}`}
+                    >
+                      Editar
+                    </Button>{" "}
                     <Button
                       variant="danger"
                       onClick={() => handleShowDelete(e.id, e.name)}

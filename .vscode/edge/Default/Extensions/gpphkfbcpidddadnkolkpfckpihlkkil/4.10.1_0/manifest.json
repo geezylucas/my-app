@@ -1,0 +1,38 @@
+{
+   "background": {
+      "persistent": false,
+      "scripts": [ "build/background.js" ]
+   },
+   "browser_action": {
+      "default_icon": {
+         "128": "icons/128-disabled.png",
+         "16": "icons/16-disabled.png",
+         "32": "icons/32-disabled.png",
+         "48": "icons/48-disabled.png"
+      },
+      "default_popup": "popups/disabled.html"
+   },
+   "content_scripts": [ {
+      "js": [ "build/injectGlobalHook.js" ],
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_start"
+   } ],
+   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+   "description": "Adds React debugging tools to the Microsoft Edge Developer Tools.\n\nCreated from revision f160547f47 on 12/4/2020.",
+   "devtools_page": "main.html",
+   "icons": {
+      "128": "icons/128-production.png",
+      "16": "icons/16-production.png",
+      "32": "icons/32-production.png",
+      "48": "icons/48-production.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt3i66Pr5NHjJL5n8AMHwCSD4/dJ3fNPQ0QBehOyuy9KvNWP3NBJgz98SvJRta48YJ5mmwGeR1CRRUOIvEzYbO1De48hJMUmAi5Q9eRerkLZPhUfAnWNPY01vAEL5DZoGHQYE5cLFnuu54pRqnx1N1ZwtVTXj5qw2m9uW9M6p7NOKE/xtOBZcVDG8J6G0Uzic6KHEcthaHD/WaJzkQbO85xlg7WLdjweup31GxALqX0YBgHLSTaSCeZldu0f/7wo1dUtThLCSjdN5/OIr5f04OvfVNVLSpFgSCPWaCUKxwiSQCMkJX3PVFPNwnzgOcu4IkgWskkuc/L5fdtVdTWYcdwIDAQAB",
+   "manifest_version": 2,
+   "minimum_chrome_version": "49",
+   "name": "React Developer Tools",
+   "permissions": [ "file:///*", "http://*/*", "https://*/*" ],
+   "update_url": "https://edge.microsoft.com/extensionwebstorebase/v1/crx",
+   "version": "4.10.1",
+   "version_name": "4.10.1 (12/4/2020)",
+   "web_accessible_resources": [ "main.html", "panel.html", "build/react_devtools_backend.js", "build/renderer.js" ]
+}

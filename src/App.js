@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import NavBar from "./components/NavBar";
 import AreasList from "./screens/AreasList";
 import CreateArea from "./screens/CreateArea";
+import EditArea from "./screens/EditArea";
 import Home from "./screens/Home";
 
 const App = () => {
@@ -12,6 +13,9 @@ const App = () => {
       <NavBar />
       <Container>
         <Switch>
+          <Route path="/editarea/:id">
+            <EditArea />
+          </Route>
           <Route path="/createarea">
             <CreateArea />
           </Route>
