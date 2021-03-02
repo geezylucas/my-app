@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Col, Row, Card, Button, Form } from "react-bootstrap";
 import AnyAlert from "../components/AnyAlert";
 
-const CreateArea = () => {
-  const [form, setForm] = useState({ name: "" });
+const CreateSubArea = () => {
+  const [form, setForm] = useState({ name: "", areaId: "" });
+  const [select, setSelect] = useState([]);
   const [alertProps, setAlertProps] = useState({
     variant: "",
     title: "",
@@ -20,14 +21,34 @@ const CreateArea = () => {
       show: false,
     });
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios.get("http://192.168.100.6:5000/api/area");
+
+        setSelect(result.data);
+      } catch (error) {
+        setAlertProps({
+          variant: "danger",
+          title: "¡Ups! Algo salió mal",
+          body: error.response.data,
+          show: true,
+        });
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await axios.post(
-        "http://192.168.100.6:5000/api/area",
+        "http://192.168.100.6:5000/api/subarea",
         {
           name: form.name,
+          areaId: form.areaId,
         },
         {
           header: {
@@ -60,7 +81,7 @@ const CreateArea = () => {
         <Col lg={6}>
           <Card>
             <Card.Header>
-              <h1>Agregar Área</h1>
+              <h1>Agregar Subárea</h1>
             </Card.Header>
             <Card.Body>
               <AnyAlert {...alertProps} handleClose={handleCloseAlert} />
@@ -72,9 +93,32 @@ const CreateArea = () => {
                     type="text"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    placeholder="Ingresar nombre de área"
+                    placeholder="Ingresar nombre de subárea"
                     required
                   />
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlSelect1">
+                  <Form.Label>Seleccione una área</Form.Label>
+                  <Form.Control
+                    as="select"
+                    onChange={(e) =>
+                      setForm({
+                        ...form,
+                        areaId: parseInt(e.target.value, 10),
+                      })
+                    }
+                    value={form.areaId}
+                    required
+                  >
+                    <option value="" disabled>
+                      ---
+                    </option>
+                    {select.map((e) => (
+                      <option key={e.id} value={e.id}>
+                        {e.name}
+                      </option>
+                    ))}
+                  </Form.Control>
                 </Form.Group>
                 <Button variant="primary" type="submit">
                   Agregar
@@ -88,4 +132,4 @@ const CreateArea = () => {
   );
 };
 
-export default CreateArea;
+export default CreateSubArea;

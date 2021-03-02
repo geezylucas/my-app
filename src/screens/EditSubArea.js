@@ -4,7 +4,7 @@ import axios from "axios";
 import { Col, Row, Card, Button, Form } from "react-bootstrap";
 import AnyAlert from "../components/AnyAlert";
 
-const EditArea = () => {
+const EditSubArea = () => {
   let { id } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +22,7 @@ const EditArea = () => {
         setIsLoading(true);
 
         const result = await axios.get(
-          `http://192.168.100.6:5000/api/area/${id}`
+          `http://192.168.100.6:5000/api/subarea/${id}`
         );
 
         setForm({ id: result.data.id, name: result.data.name });
@@ -52,7 +52,7 @@ const EditArea = () => {
 
     try {
       await axios.put(
-        `http://192.168.100.6:5000/api/area/${id}`,
+        `http://192.168.100.6:5000/api/subarea/${id}`,
         {
           id: form.id,
           name: form.name,
@@ -89,7 +89,7 @@ const EditArea = () => {
           <Col lg={6}>
             <Card>
               <Card.Header>
-                <h1>Editar Area</h1>
+                <h1>Editar Subárea</h1>
               </Card.Header>
               <Card.Body>
                 <AnyAlert {...alertProps} handleClose={handleCloseAlert} />
@@ -103,7 +103,7 @@ const EditArea = () => {
                       onChange={(e) =>
                         setForm({ ...form, name: e.target.value })
                       }
-                      placeholder="Ingresar nombre de area"
+                      placeholder="Ingresar nombre de subárea"
                       required
                     />
                   </Form.Group>
@@ -120,4 +120,4 @@ const EditArea = () => {
   );
 };
 
-export default EditArea;
+export default EditSubArea;

@@ -4,11 +4,11 @@ import axios from "axios";
 import { Table, Button, Modal } from "react-bootstrap";
 import AnyAlert from "../components/AnyAlert";
 
-const AreasList = () => {
+const SubAreasList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
-  const [area, setArea] = useState({ id: 0, name: "" });
-  const [deleteArea, setDeleteArea] = useState(false);
+  const [subarea, setSubarea] = useState({ id: 0, name: "" });
+  const [deleteSubArea, setDeleteSubArea] = useState(false);
   const [alertProps, setAlertProps] = useState({
     variant: "",
     title: "",
@@ -24,7 +24,7 @@ const AreasList = () => {
     try {
       setIsLoading(true);
 
-      const result = await axios.get("http://192.168.100.6:5000/api/area");
+      const result = await axios.get("http://192.168.100.6:5000/api/subarea");
 
       setData(result.data);
       setIsLoading(false);
@@ -46,21 +46,21 @@ const AreasList = () => {
       show: false,
     });
 
-  const handleCloseDelete = () => setDeleteArea(false);
+  const handleCloseDelete = () => setDeleteSubArea(false);
 
   const handleShowDelete = (id, name) => {
-    setArea({ id, name });
-    setDeleteArea(true);
+    setSubarea({ id, name });
+    setDeleteSubArea(true);
   };
 
-  const fetchDeleteArea = async () => {
+  const fetchDeleteSubArea = async () => {
     try {
-      await axios.delete(`http://192.168.100.6:5000/api/area/${area.id}`);
+      await axios.delete(`http://192.168.100.6:5000/api/subarea/${subarea.id}`);
 
       setAlertProps({
         variant: "success",
         title: "¡Bien hecho!",
-        body: `Se eliminó ${area.name} correctamente.`,
+        body: `Se eliminó ${subarea.name} correctamente.`,
         show: true,
       });
 
@@ -79,7 +79,7 @@ const AreasList = () => {
 
   return (
     <div>
-      <h1>Áreas</h1>
+      <h1>Subáreas</h1>
       {isLoading ? (
         <div>Loading ...</div>
       ) : (
@@ -100,7 +100,7 @@ const AreasList = () => {
                     <Button
                       variant="success"
                       as={Link}
-                      to={`/editarea/${e.id}`}
+                      to={`/editsubarea/${e.id}`}
                     >
                       Editar
                     </Button>{" "}
@@ -117,18 +117,18 @@ const AreasList = () => {
           </Table>
         </>
       )}
-      <Modal show={deleteArea} onHide={handleCloseDelete}>
+      <Modal show={deleteSubArea} onHide={handleCloseDelete}>
         <Modal.Header closeButton>
-          <Modal.Title>Eliminar área</Modal.Title>
+          <Modal.Title>Eliminar subárea</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          ¿Estás seguro de eliminar el registro {area.name}?
+          ¿Estás seguro de eliminar el registro {subarea.name}?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseDelete}>
             Cancelar
           </Button>
-          <Button variant="primary" onClick={fetchDeleteArea}>
+          <Button variant="primary" onClick={fetchDeleteSubArea}>
             Eliminar
           </Button>
         </Modal.Footer>
@@ -137,4 +137,4 @@ const AreasList = () => {
   );
 };
 
-export default AreasList;
+export default SubAreasList;

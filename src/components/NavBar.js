@@ -23,10 +23,18 @@ const NavBar = () => (
             </Nav.Link>
             <NavDropdown title="Areas" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/createarea">
-                Crear Area
+                Crear Área
               </NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/areas">
-                Lista de areas
+                Lista de áreas
+              </NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="Subareas" id="basic-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/createsubarea">
+                Crear Subárea
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/subareas">
+                Lista de subáreas
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
