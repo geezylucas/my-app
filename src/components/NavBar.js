@@ -1,9 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
+import { withCookies } from "react-cookie";
+import { Navbar, Nav, Container, NavDropdown, Button } from "react-bootstrap";
 
-const NavBar = () => (
-  <header>
+const NavBar = (props) => {
+  let email = props.cookies.get("user") || undefined;
+
+  const signOut = () => {
+    const { cookies } = props;
+    cookies.remove("user");
+  };
+
+  return (
     <Navbar
       className="border-bottom box-shadow mb-3"
       collapseOnSelect
@@ -46,10 +54,17 @@ const NavBar = () => (
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
+          {email && (
+            <Navbar.Collapse className="justify-content-end">
+              <Button variant="outline-info" onClick={signOut}>
+                Cerrar sesión
+              </Button>
+            </Navbar.Collapse>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  </header>
-);
+  );
+};
 
-export default NavBar;
+export default withCookies(NavBar);

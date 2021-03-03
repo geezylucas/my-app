@@ -96,7 +96,7 @@ const CreateUser = () => {
   return (
     <Row className="justify-content-md-center">
       <Col lg={6}>
-        <Card>
+        <Card className="mb-3">
           <Card.Header>
             <h1>Agregar Usuario</h1>
           </Card.Header>

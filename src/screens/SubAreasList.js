@@ -89,7 +89,7 @@ const SubAreasList = () => {
             <thead>
               <tr>
                 <th>Nombre</th>
-                <th>Area</th>
+                <th>Área</th>
                 <th>Acciones</th>
               </tr>
             </thead>

@@ -218,7 +218,7 @@ const EditUser = () => {
                     </Form.Control>
                   </Form.Group>
                   <Button variant="primary" type="submit">
-                    Agregar
+                    Editar
                   </Button>
                 </Form>
               </Card.Body>

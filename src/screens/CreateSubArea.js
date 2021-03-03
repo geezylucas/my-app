@@ -64,7 +64,7 @@ const CreateSubArea = () => {
         show: true,
       });
 
-      setForm({ name: "" });
+      setForm({ name: "", areaId: "" });
     } catch (error) {
       setAlertProps({
         variant: "danger",
