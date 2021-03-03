@@ -55,36 +55,34 @@ const CreateArea = () => {
   };
 
   return (
-    <div>
-      <Row className="justify-content-md-center">
-        <Col lg={6}>
-          <Card>
-            <Card.Header>
-              <h1>Agregar Área</h1>
-            </Card.Header>
-            <Card.Body>
-              <AnyAlert {...alertProps} handleClose={handleCloseAlert} />
-              <Card.Title>Llene todos los campos requeridos</Card.Title>
-              <Form onSubmit={onSubmit}>
-                <Form.Group controlId="formBasicName">
-                  <Form.Label>Nombre</Form.Label>
-                  <Form.Control
-                    type="text"
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    placeholder="Ingresar nombre de área"
-                    required
-                  />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                  Agregar
-                </Button>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </div>
+    <Row className="justify-content-md-center">
+      <Col lg={6}>
+        <Card>
+          <Card.Header>
+            <h1>Agregar Área</h1>
+          </Card.Header>
+          <Card.Body>
+            <AnyAlert {...alertProps} handleClose={handleCloseAlert} />
+            <Card.Title>Llene todos los campos requeridos</Card.Title>
+            <Form onSubmit={onSubmit}>
+              <Form.Group controlId="formBasicName">
+                <Form.Label>Nombre</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  placeholder="Ingresar nombre de área"
+                  required
+                />
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                Agregar
+              </Button>
+            </Form>
+          </Card.Body>
+        </Card>
+      </Col>
+    </Row>
   );
 };
 

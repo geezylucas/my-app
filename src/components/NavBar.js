@@ -21,20 +21,28 @@ const NavBar = () => (
             <Nav.Link as={Link} to="/">
               Inicio
             </Nav.Link>
-            <NavDropdown title="Areas" id="basic-nav-dropdown">
+            <NavDropdown title="Áreas" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/createarea">
-                Crear Área
+                Crear área
               </NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/areas">
                 Lista de áreas
               </NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="Subareas" id="basic-nav-dropdown">
+            <NavDropdown title="Subáreas" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/createsubarea">
-                Crear Subárea
+                Crear subárea
               </NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/subareas">
                 Lista de subáreas
+              </NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="Usuarios" id="basic-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/createuser">
+                Crear usuario
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/users">
+                Lista de usuarios
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>

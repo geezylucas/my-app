@@ -8,7 +8,7 @@ const AreasList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const [area, setArea] = useState({ id: 0, name: "" });
-  const [deleteArea, setDeleteArea] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
   const [alertProps, setAlertProps] = useState({
     variant: "",
     title: "",
@@ -46,11 +46,11 @@ const AreasList = () => {
       show: false,
     });
 
-  const handleCloseDelete = () => setDeleteArea(false);
+  const handleCloseDelete = () => setShowDelete(false);
 
   const handleShowDelete = (id, name) => {
     setArea({ id, name });
-    setDeleteArea(true);
+    setShowDelete(true);
   };
 
   const fetchDeleteArea = async () => {
@@ -117,7 +117,7 @@ const AreasList = () => {
           </Table>
         </>
       )}
-      <Modal show={deleteArea} onHide={handleCloseDelete}>
+      <Modal show={showDelete} onHide={handleCloseDelete}>
         <Modal.Header closeButton>
           <Modal.Title>Eliminar área</Modal.Title>
         </Modal.Header>

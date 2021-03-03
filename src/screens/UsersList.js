@@ -4,10 +4,10 @@ import axios from "axios";
 import { Table, Button, Modal } from "react-bootstrap";
 import AnyAlert from "../components/AnyAlert";
 
-const SubAreasList = () => {
+const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
-  const [subarea, setSubarea] = useState({ id: 0, name: "" });
+  const [user, setUser] = useState({ id: 0, email: "" });
   const [showDelete, setShowDelete] = useState(false);
   const [alertProps, setAlertProps] = useState({
     variant: "",
@@ -24,7 +24,7 @@ const SubAreasList = () => {
     try {
       setIsLoading(true);
 
-      const result = await axios.get("http://192.168.100.6:5000/api/subarea");
+      const result = await axios.get("http://192.168.100.6:5000/api/user");
 
       setData(result.data);
       setIsLoading(false);
@@ -48,19 +48,19 @@ const SubAreasList = () => {
 
   const handleCloseDelete = () => setShowDelete(false);
 
-  const handleShowDelete = (id, name) => {
-    setSubarea({ id, name });
+  const handleShowDelete = (id, email) => {
+    setUser({ id, email });
     setShowDelete(true);
   };
 
-  const fetchDeleteSubArea = async () => {
+  const fetchDeleteUser = async () => {
     try {
-      await axios.delete(`http://192.168.100.6:5000/api/subarea/${subarea.id}`);
+      await axios.delete(`http://192.168.100.6:5000/api/user/${user.id}`);
 
       setAlertProps({
         variant: "success",
         title: "¡Bien hecho!",
-        body: `Se eliminó ${subarea.name} correctamente.`,
+        body: `Se eliminó ${user.email} correctamente.`,
         show: true,
       });
 
@@ -79,7 +79,7 @@ const SubAreasList = () => {
 
   return (
     <div>
-      <h1>Subáreas</h1>
+      <h1>Usuarios</h1>
       {isLoading ? (
         <div>Loading ...</div>
       ) : (
@@ -88,27 +88,33 @@ const SubAreasList = () => {
           <Table striped bordered hover responsive>
             <thead>
               <tr>
+                <th>Email</th>
                 <th>Nombre</th>
-                <th>Area</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Subárea</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
               {data.map((e, i) => (
                 <tr key={i}>
+                  <td>{e.email}</td>
                   <td>{e.name}</td>
-                  <td>{e.areaName}</td>
+                  <td>{e.lastname}</td>
+                  <td>{e.secondLastname}</td>
+                  <td>{e.subAreaName}</td>
                   <td>
                     <Button
                       variant="success"
                       as={Link}
-                      to={`/editsubarea/${e.id}`}
+                      to={`/edituser/${e.id}`}
                     >
                       Editar
                     </Button>{" "}
                     <Button
                       variant="danger"
-                      onClick={() => handleShowDelete(e.id, e.name)}
+                      onClick={() => handleShowDelete(e.id, e.email)}
                     >
                       Eliminar
                     </Button>
@@ -121,16 +127,16 @@ const SubAreasList = () => {
       )}
       <Modal show={showDelete} onHide={handleCloseDelete}>
         <Modal.Header closeButton>
-          <Modal.Title>Eliminar subárea</Modal.Title>
+          <Modal.Title>Eliminar usuario</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          ¿Estás seguro de eliminar el registro {subarea.name}?
+          ¿Estás seguro de eliminar el registro {user.email}?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseDelete}>
             Cancelar
           </Button>
-          <Button variant="primary" onClick={fetchDeleteSubArea}>
+          <Button variant="primary" onClick={fetchDeleteUser}>
             Eliminar
           </Button>
         </Modal.Footer>
@@ -139,4 +145,4 @@ const SubAreasList = () => {
   );
 };
 
-export default SubAreasList;
+export default UserList;

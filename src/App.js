@@ -8,6 +8,9 @@ import EditArea from "./screens/EditArea";
 import SubAreasList from "./screens/SubAreasList";
 import CreateSubArea from "./screens/CreateSubArea";
 import EditSubArea from "./screens/EditSubArea";
+import UsersList from "./screens/UsersList";
+import CreateUser from "./screens/CreateUser";
+import EditUser from "./screens/EditUser";
 import Home from "./screens/Home";
 
 const App = () => {
@@ -16,6 +19,15 @@ const App = () => {
       <NavBar />
       <Container>
         <Switch>
+          <Route path="/edituser/:id">
+            <EditUser />
+          </Route>
+          <Route path="/createuser">
+            <CreateUser />
+          </Route>
+          <Route path="/users">
+            <UsersList />
+          </Route>
           <Route path="/editsubarea/:id">
             <EditSubArea />
           </Route>

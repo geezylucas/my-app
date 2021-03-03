@@ -76,59 +76,57 @@ const CreateSubArea = () => {
   };
 
   return (
-    <div>
-      <Row className="justify-content-md-center">
-        <Col lg={6}>
-          <Card>
-            <Card.Header>
-              <h1>Agregar Subárea</h1>
-            </Card.Header>
-            <Card.Body>
-              <AnyAlert {...alertProps} handleClose={handleCloseAlert} />
-              <Card.Title>Llene todos los campos requeridos</Card.Title>
-              <Form onSubmit={onSubmit}>
-                <Form.Group controlId="formBasicName">
-                  <Form.Label>Nombre</Form.Label>
-                  <Form.Control
-                    type="text"
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    placeholder="Ingresar nombre de subárea"
-                    required
-                  />
-                </Form.Group>
-                <Form.Group controlId="exampleForm.ControlSelect1">
-                  <Form.Label>Seleccione una área</Form.Label>
-                  <Form.Control
-                    as="select"
-                    onChange={(e) =>
-                      setForm({
-                        ...form,
-                        areaId: parseInt(e.target.value, 10),
-                      })
-                    }
-                    value={form.areaId}
-                    required
-                  >
-                    <option value="" disabled>
-                      ---
+    <Row className="justify-content-md-center">
+      <Col lg={6}>
+        <Card>
+          <Card.Header>
+            <h1>Agregar Subárea</h1>
+          </Card.Header>
+          <Card.Body>
+            <AnyAlert {...alertProps} handleClose={handleCloseAlert} />
+            <Card.Title>Llene todos los campos requeridos</Card.Title>
+            <Form onSubmit={onSubmit}>
+              <Form.Group controlId="formBasicName">
+                <Form.Label>Nombre</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  placeholder="Ingresar nombre de subárea"
+                  required
+                />
+              </Form.Group>
+              <Form.Group controlId="exampleForm.ControlSelect1">
+                <Form.Label>Seleccione una área</Form.Label>
+                <Form.Control
+                  as="select"
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      areaId: parseInt(e.target.value, 10),
+                    })
+                  }
+                  value={form.areaId}
+                  required
+                >
+                  <option value="" disabled>
+                    ---
+                  </option>
+                  {select.map((e) => (
+                    <option key={e.id} value={e.id}>
+                      {e.name}
                     </option>
-                    {select.map((e) => (
-                      <option key={e.id} value={e.id}>
-                        {e.name}
-                      </option>
-                    ))}
-                  </Form.Control>
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                  Agregar
-                </Button>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </div>
+                  ))}
+                </Form.Control>
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                Agregar
+              </Button>
+            </Form>
+          </Card.Body>
+        </Card>
+      </Col>
+    </Row>
   );
 };
 
