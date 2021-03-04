@@ -98,14 +98,15 @@ const SubAreasList = () => {
                 <tr key={i}>
                   <td>{e.name}</td>
                   <td>{e.areaName}</td>
-                  <td>
+                  <td className="actions-td">
                     <Button
+                      className="actions-button"
                       variant="success"
                       as={Link}
                       to={`/editsubarea/${e.id}`}
                     >
                       Editar
-                    </Button>{" "}
+                    </Button>
                     <Button
                       variant="danger"
                       onClick={() => handleShowDelete(e.id, e.name)}

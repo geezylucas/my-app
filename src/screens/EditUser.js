@@ -85,8 +85,6 @@ const EditUser = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(form);
-
     try {
       await axios.put(
         `http://192.168.100.6:5000/api/user/${id}`,

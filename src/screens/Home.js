@@ -6,7 +6,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Bienvenido: {cookies.user}</h1>
+      <h1 className="title">Bienvenido: {cookies.user}</h1>
     </div>
   );
 };

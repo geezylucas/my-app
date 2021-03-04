@@ -79,6 +79,7 @@ const EditSubArea = () => {
         {
           id: form.id,
           name: form.name,
+          areaId: form.areaId,
         },
         {
           header: {

@@ -96,14 +96,15 @@ const AreasList = () => {
               {data.map((e, i) => (
                 <tr key={i}>
                   <td>{e.name}</td>
-                  <td>
+                  <td className="actions-td">
                     <Button
+                      className="actions-button"
                       variant="success"
                       as={Link}
                       to={`/editarea/${e.id}`}
                     >
                       Editar
-                    </Button>{" "}
+                    </Button>
                     <Button
                       variant="danger"
                       onClick={() => handleShowDelete(e.id, e.name)}

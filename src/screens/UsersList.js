@@ -104,14 +104,15 @@ const UserList = () => {
                   <td>{e.lastname}</td>
                   <td>{e.secondLastname}</td>
                   <td>{e.subAreaName}</td>
-                  <td>
+                  <td className="actions-td">
                     <Button
+                      className="actions-button"
                       variant="success"
                       as={Link}
                       to={`/edituser/${e.id}`}
                     >
                       Editar
-                    </Button>{" "}
+                    </Button>
                     <Button
                       variant="danger"
                       onClick={() => handleShowDelete(e.id, e.email)}
